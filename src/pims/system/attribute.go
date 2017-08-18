@@ -1,7 +1,7 @@
 package pims
 
 type Attribute struct {
-	Id        int
+	Uuid        string
 	Type      string
 	Name      string
 	ValueType string

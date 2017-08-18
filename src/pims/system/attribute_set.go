@@ -1,8 +1,8 @@
 package pims
 
 type AttributeSet struct {
-	Id         int
+	Uuid         string
 	Type       string
 	Name       string
-	Attributes *[]int
+	Attributes *[]string
 }
