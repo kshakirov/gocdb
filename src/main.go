@@ -1,11 +1,10 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"gopkg.in/couchbase/gocb.v1"
-	"io/ioutil"
 	"pims/system"
+	//"pims/tools"
 	"strconv"
 )
 
@@ -25,6 +24,20 @@ func addAttributeSet(bucket *gocb.Bucket, name string, attributeIds []int) {
 	bucket.Insert("a1", attributeSet, 0)
 }
 
+
+
+
+func addProduct(bucket *gocb.Bucket, entities[] pims.Entity)  {
+		for i,e:= range entities{
+			bucket.Insert(strconv.Itoa(i), e, 0)
+		}
+	//product.Attributes = ([]map[string]interface{})data["attributes"]
+	//product.AttributeSets = data["attributeSets"]
+
+}
+
+
+
 func main() {
 	cluster, _ := gocb.Connect("couchbase://timms.turbointernational.com")
 	bucket, _ := cluster.OpenBucket("pims", "")
@@ -35,20 +48,9 @@ func main() {
 		addAttributes(bucket, ids, names)
 		addAttributeSet(bucket, "Default", ids)
 	}
-	js, err := ioutil.ReadFile("var/products.json")
-	//js = []byte(`{"num":6.13,"strs":["a","b"]}`)
-	var dat []map[string]interface{}
-	if err == nil {
-		err1 := json.Unmarshal(js, &dat)
-		if err1 == nil {
-			fmt.Println(dat)
-			//fmt.Println(num)
-		} else {
-			fmt.Println(err1)
-		}
+	entities:= pims.ReadMigration("var/products.json")
+	fmt.Println(entities)
+	addProduct(bucket, entities)
 
-	} else {
-		fmt.Print(err)
-	}
 
 }

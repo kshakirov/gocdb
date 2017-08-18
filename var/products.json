@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "A",
+    "description": "Good",
+    "attributes": [
+      {
+        "1": "test",
+        "2": 0.33,
+        "3": 4,
+        "5": true
+      }
+    ],
+    "attributeSets": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+]

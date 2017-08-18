@@ -1,9 +1,9 @@
 package pims
 
 type Entity struct {
-	uuid int
-	Name string
-	Description string
-	Attributes map[string]interface{}
-	AttributeSets *[]int
+	Id  int  `json:"id"`
+	Name string  `json:"name"`
+	Description string `json:"string"`
+	Attributes[] map[string]interface{}`json:"attributes"`
+	AttributeSets []int `json:"attrbibuteSets"`
 }
